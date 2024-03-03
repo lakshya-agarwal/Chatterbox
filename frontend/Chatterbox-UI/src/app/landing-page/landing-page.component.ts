@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,14 +7,23 @@ import { Router } from '@angular/router';
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css'
 })
-export class LandingPageComponent {
+export class LandingPageComponent implements OnInit{
+  loginForm!: FormGroup;
 
-  userName: string = '';
-  userEmail: string = '';
-
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+    private fb: FormBuilder) {}
   
+  ngOnInit() {
+      this.loginForm = this.fb.group({
+          userName: ['', [Validators.required]],
+          userEmail: ['', [Validators.required, Validators.email]],
+      });
+  }
+
   onSubmit() {
-    this.router.navigate(['/chat']);
+    if (this.loginForm.valid){
+      this.router.navigate(['/chat']);
+    }
+   
   }
 }

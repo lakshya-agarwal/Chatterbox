@@ -1,20 +1,27 @@
-<div class="login-container">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Login</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <form (ngSubmit)="onSubmit()">
-                <mat-form-field>
-                    <input matInput placeholder="Name" [(ngModel)]="userName" name="userName" required>
-                </mat-form-field>
-                <br>
-                <mat-form-field>
-                    <input matInput placeholder="Email" [(ngModel)]="userEmail" name="userEmail" required>
-                </mat-form-field>
-                <br>
-                <button mat-raised-button color="primary" type="submit">Login</button>
-            </form>
-        </mat-card-content>
-    </mat-card>
-</div>
+<html lang="en">
+
+<head>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <h1>ChatterBox</h1>
+            <div class="input-box">
+                <input formControlName="userName" type="text" placeholder="Username" />
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input formControlName="userEmail" type="text" placeholder="Email" />
+                <i class='bx bxs-user'></i>
+            </div>
+    
+            <button type="submit" class="btn">Enter ChatRoom</button>
+        </form>
+    </div>
+    
+</body>
+
+</html>
