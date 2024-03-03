@@ -36,5 +36,32 @@ Follow the steps below to set up and run the Chatterbox application on your loca
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/chatterbox.git
+   git clone https://github.com/lakshya-agarwal/Chatterbox.git
+2.Navigate to the Backend Directory:
+
+  ```bash
+  cd chatterbox-backend
+3. Build and Run the Spring Boot Application:
+
+   ```bash
+   mvn spring-boot:run
+   
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+
+    ```bash
+    cd chatterbox-frontend
+    
+2.Install dependencies:
+
+    ```bash
+    npm install
+3.Start the Angular development server:
+
+    ```bash
+    ng serve
+    
+The frontend will be accessible at http://localhost:4200.
+
 
