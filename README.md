@@ -41,6 +41,7 @@ Follow the steps below to set up and run the Chatterbox application on your loca
 
   ```bash
   cd chatterbox-backend
+ 
 3. Build and Run the Spring Boot Application:
 
    ```bash
@@ -63,5 +64,10 @@ Follow the steps below to set up and run the Chatterbox application on your loca
     ng serve
     
 The frontend will be accessible at http://localhost:4200.
+
+###Usage
+Open your web browser and navigate to http://localhost:4200.
+Register or log in with your credentials.
+Start chatting with other users in real-time.
 
 
