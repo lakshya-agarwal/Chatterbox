@@ -8,6 +8,10 @@ public class UserTO {
 	private Boolean connected;
 	
 	
+	
+	public UserTO() {
+		super();
+	}
 	public UserTO(Long id, String name, String email, Boolean connected) {
 		super();
 		this.id = id;
