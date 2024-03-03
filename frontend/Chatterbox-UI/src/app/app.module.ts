@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { ChatBoxComponent } from './chat-box/chat-box.component';
 
 
 
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     ChatComponent,
     HeaderComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ChatBoxComponent
   ],
   imports: [
     BrowserModule,

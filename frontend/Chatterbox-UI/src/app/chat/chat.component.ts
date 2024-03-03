@@ -9,8 +9,10 @@ import { User } from '../models/User';
 })
 export class ChatComponent implements OnInit {
 
+
   users: User[] = [];
   dummyUsers: User[] = [];
+  selectedUser!: User;
 
   constructor(private userService: UserService){
 
@@ -29,5 +31,11 @@ export class ChatComponent implements OnInit {
       });
     }
   }
+
+  userSelected(user:User) {
+    console.log("clicked")
+    console.log(user)
+    this.selectedUser=user;
+    }
 
 }
