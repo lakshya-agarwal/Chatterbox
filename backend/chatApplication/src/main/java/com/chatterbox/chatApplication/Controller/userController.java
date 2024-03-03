@@ -27,6 +27,7 @@ public class userController {
 	@MessageMapping("/userConnected")
 	@SendTo("/topic/public")
 	public UserTO userConnected(@Payload UserTO user) {
+		
 		 userService.saveUser(user);
 		 return user;
 	}

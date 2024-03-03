@@ -1,0 +1,28 @@
+.app-header {
+    background-color: #ecf0f1; /* Set a light background color */    /* Set your desired background color */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo span {
+    font-size: 1.5rem; /* Set the font size */
+    font-weight: bold;
+    margin-left: 10px; /* Add margin between icon and text */
+}
+
+.nav-links a {
+    color: black; /* Set the link color */
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}

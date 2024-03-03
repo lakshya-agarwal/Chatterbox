@@ -1,0 +1,26 @@
+
+.row{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 800px;
+    height: 600px;
+}
+.col-4{
+    background: #333;
+    flex: 40%;
+}
+
+.col-6{
+    background: #f6f6f6;
+    overflow-y: auto;
+    flex: 60%;
+}
+
+.search-box{
+    
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    line-height: 200%;
+}

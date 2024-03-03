@@ -29,8 +29,8 @@ public class UserService {
 
 	public void saveUser(UserTO user) {
 
+		user.setConnected(true);
 		UserEntity userEntity = mapper.toEntity(user);
-		userEntity.setConnected(true);
 		userRepository.save(userEntity);
 
 	}
