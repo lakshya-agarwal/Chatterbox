@@ -1,0 +1,36 @@
+.login-container {
+    background-color: #f0f0f0; /* Set the background color for the entire page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Make the content fill the viewport height */
+    margin: 0; /* Remove default margin */
+}
+
+mat-card {
+    max-width: 400px;
+    width: 400px;
+    background-color: #ffffff; /* Set the background color for the card */
+    border-radius: 20px;
+}
+mat-card-header{
+    background-color: rgb(32, 194, 180);
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    align-content: center;
+    align-items: center;
+}
+mat-card-content{
+    padding: 10px;
+}
+mat-form-field{
+    padding: 10px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

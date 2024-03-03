@@ -17,4 +17,11 @@ public class UserMapper {
 	        return userDTO;
 	    }
 	
+	 public UserEntity toEntity(UserTO userDTO) {
+	        UserEntity userEntity = new UserEntity();
+	        userEntity.setId(userDTO.getId());
+	        userEntity.setName(userDTO.getName());
+	        userEntity.setConnected(userDTO.getConnected());
+	        return userEntity;
+	    }
 }
