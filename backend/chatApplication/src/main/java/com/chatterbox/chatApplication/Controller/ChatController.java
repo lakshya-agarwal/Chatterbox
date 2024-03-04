@@ -14,12 +14,10 @@ public class ChatController {
 	@Autowired
 	private SimpMessagingTemplate template;
 	
-	
-	
 	@MessageMapping("/message")
 	public void handleMessage(@Payload MessageTO msg) {
-		
-		template.convertAndSend("/topic/chat/"+msg.getChannelId(), msg);
+		System.out.println(msg.getContent());
+		template.convertAndSend("/topic/chat/"+msg.getReceiverId(), msg);
 		
 
 	}

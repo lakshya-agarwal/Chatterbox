@@ -26,7 +26,8 @@ export class ChatComponent implements OnInit {
     for (let i = 1; i <= 2; i++) {
       this.dummyUsers.push({
         id: `user${i}`,
-        username: `User ${i}`,
+        name: `User ${i}`,
+        email:`email ${i}`,
         imageURL: `https://placekitten.com/50/50?image=${i}`, // Placeholder image URL
       });
     }

@@ -21,6 +21,7 @@ public class UserMapper {
 	        UserEntity userEntity = new UserEntity();
 	        userEntity.setId(userDTO.getId());
 	        userEntity.setName(userDTO.getName());
+	        userEntity.setEmail(userDTO.getEmail());
 	        userEntity.setConnected(userDTO.getConnected());
 	        return userEntity;
 	    }

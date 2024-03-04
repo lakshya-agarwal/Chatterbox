@@ -4,8 +4,8 @@
             <input matInput class="form-control"    placeholder="Search">
         </mat-form-field>
         <div class="user" (click)="userSelected(user)" *ngFor="let user of dummyUsers">
-            <img [src]="user.imageURL" alt="{{ user.username }} Image" />
-            <span>{{ user.username }}</span>
+            <img [src]="user.imageURL" alt="{{ user.name }} Image" />
+            <span>{{ user.name }}</span>
           </div>
           
     </div>

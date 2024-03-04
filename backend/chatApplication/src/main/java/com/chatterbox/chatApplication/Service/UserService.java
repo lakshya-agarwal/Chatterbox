@@ -27,11 +27,12 @@ public class UserService {
 				.collect(Collectors.toList());
 	}
 
-	public void saveUser(UserTO user) {
+	public UserTO saveUser(UserTO user) {
 
 		user.setConnected(true);
 		UserEntity userEntity = mapper.toEntity(user);
-		userRepository.save(userEntity);
+		UserEntity savedUser = userRepository.save(userEntity);
+		return mapper.toDto(savedUser);
 
 	}
 

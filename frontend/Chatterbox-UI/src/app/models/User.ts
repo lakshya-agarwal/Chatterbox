@@ -1,5 +1,7 @@
 export interface User {
     id: String;
-    username: string;
+    name: string;
     imageURL: string;
+    email:String;
+
   }

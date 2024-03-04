@@ -1,5 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { User } from '../models/User';
+import { WebsocketService } from '../websocket.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-chat-box',
@@ -12,6 +14,11 @@ export class ChatBoxComponent implements OnChanges {
   messages: any[] = [];
   newMessage: string = '';
 
+  constructor(private websocketService: WebsocketService,
+    private userService: UserService){
+
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['user']) {
       console.log('user changed:', this.user);
@@ -21,12 +28,13 @@ export class ChatBoxComponent implements OnChanges {
   sendMessage() {
     if (this.newMessage.trim() !== '') {
       const newChatMessage = {
-        sender: this.user,
-        content: this.newMessage,
-        timestamp: new Date(),
+        "receiverId": 1,
+        "senderId":this.userService.getUser().id,
+        "content": this.newMessage,
+        "timestamp": new Date(),
       };
-
-      this.messages.push(newChatMessage);
+      this.websocketService.sendMessage('/app/message',JSON.stringify(newChatMessage))
+      
       this.newMessage = ''; // Clear the input field after sending
     }
   }

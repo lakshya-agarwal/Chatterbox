@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Client, Message } from '@stomp/stompjs';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +9,12 @@ export class WebsocketService {
 
   private stompClient!: Client;
 
-  constructor() {
+
+  constructor(private userService:UserService) {
     
   }
 
-  initializeWebSocketConnection() {
+  initializeWebSocketConnection(user:any) {
     const socket = new WebSocket('ws://localhost:8765/ws');
 
     socket.addEventListener('open', (event) => {
@@ -37,15 +39,27 @@ export class WebsocketService {
 
     this.stompClient.onConnect = (frame) => {
       console.log('STOMP: Connected to WebSocket');
-      this.sendMessage('/app/userConnected', JSON.stringify({
-          "name": this.getName(),
-          "email":this.getEmail()
-      }));
+      /*this.sendMessage('/app/message', JSON.stringify({
+          "name": 1,
+          "email":1
+      }));*/
+
+     this.userService.saveUser(user).subscribe(
+      (response) => {
+        console.log('User added successfully:', response);
+        this.userService.storeUser(response);
+    
+      },
+      (error) => {
+        console.error('Error adding user:', error);
+      }
+    );
   };
     return true;
   }
 
   sendMessage(destination: string, message: any) {
+    console.log(message)
     this.stompClient.publish({ destination, body:message });
   }
 
@@ -63,13 +77,5 @@ export class WebsocketService {
     subscribeWithRetry();
   }
 
-  getName(){
-    return localStorage.getItem('name')
-
-  }
-
-
-  getEmail(){
-    return localStorage.getItem('email')
-  }
+ 
 }
