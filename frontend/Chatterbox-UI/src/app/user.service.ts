@@ -42,4 +42,15 @@ export class UserService {
     const storedUser = sessionStorage.getItem("user",);
     return storedUser ? JSON.parse(storedUser) : null;
   }
+
+  onBeforeUnload() {
+    // Perform logout actions and clear session storage
+    this.logout();
+  }
+
+  logout() {
+    // Your logout logic here
+    // For example, clear session storage
+    sessionStorage.clear();
+  }
 }
