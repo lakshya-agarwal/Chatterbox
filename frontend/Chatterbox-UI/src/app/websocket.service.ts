@@ -14,7 +14,7 @@ export class WebsocketService {
     
   }
 
-  initializeWebSocketConnection(user:any) {
+  initializeWebSocketConnection(user:any,message:any[]) {
     const socket = new WebSocket('ws://localhost:8765/ws');
 
     socket.addEventListener('open', (event) => {
@@ -39,21 +39,28 @@ export class WebsocketService {
 
     this.stompClient.onConnect = (frame) => {
       console.log('STOMP: Connected to WebSocket');
-      /*this.sendMessage('/app/message', JSON.stringify({
-          "name": 1,
-          "email":1
-      }));*/
-
+      
      this.userService.saveUser(user).subscribe(
       (response) => {
         console.log('User added successfully:', response);
         this.userService.storeUser(response);
-    
+        this.subscribe("/topic/chat/"+this.userService.getUser().id,(x: Message)=>{
+          console.log("new message received:"+x.body)
+          message.push(x);
+        })
+        this.subscribe("/topic/public",(user)=>{
+          console.log("add user message receive:"+user);
+          this.userService.addUser(JSON.parse(user.body))
+        })
       },
       (error) => {
         console.error('Error adding user:', error);
       }
     );
+
+    
+
+
   };
     return true;
   }

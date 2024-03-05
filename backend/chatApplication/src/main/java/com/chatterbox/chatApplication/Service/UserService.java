@@ -26,14 +26,34 @@ public class UserService {
 		return userRepository.findAll().stream().filter(UserEntity::isConnected).map(mapper::toDto)
 				.collect(Collectors.toList());
 	}
+	
+	
 
 	public UserTO saveUser(UserTO user) {
+		String userName = user.getName();
+	    
+	    // Check if the user with the given name already exists in the database
+	    Optional<List<UserEntity>> existingUserOptional = userRepository.findByName(userName);
 
-		user.setConnected(true);
-		UserEntity userEntity = mapper.toEntity(user);
-		UserEntity savedUser = userRepository.save(userEntity);
-		return mapper.toDto(savedUser);
+	    if (existingUserOptional.isPresent() && !existingUserOptional.get().isEmpty()) {
+	        // User with the given name already exists, update its status to "active"
+	        UserEntity existingUser = existingUserOptional.get().get(0);
+	        existingUser.setConnected(true);
+	        UserEntity savedUser = userRepository.save(existingUser);
 
+	        // Return the updated user information in the response
+	        return mapper.toDto(savedUser);
+	    } else {
+	        // User with the given name doesn't exist, create a new user
+	        user.setConnected(true);
+	        UserEntity newUserEntity = mapper.toEntity(user);
+	        UserEntity savedUser = userRepository.save(newUserEntity);
+
+	        // Return the new user information in the response
+	        return mapper.toDto(savedUser);
+	    }
+	    
+	    
 	}
 
 }

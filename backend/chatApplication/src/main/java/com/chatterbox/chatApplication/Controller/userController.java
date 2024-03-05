@@ -11,6 +11,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chatterbox.chatApplication.Dto.UserTO;
@@ -40,7 +41,7 @@ public class userController {
 //	}
 	
 	@PostMapping("/addUser")
-	public ResponseEntity<UserTO> addUser(UserTO user){
+	public ResponseEntity<UserTO> addUser( @RequestBody UserTO user){
 		
 		//store the user in database and get its Id
 		UserTO savedUser = userService.saveUser(user);

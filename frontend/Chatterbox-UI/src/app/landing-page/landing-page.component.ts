@@ -11,6 +11,7 @@ import { UserService } from '../user.service';
 })
 export class LandingPageComponent implements OnInit{
   loginForm!: FormGroup;
+  message!: any[];
 
   constructor(private router: Router,
     private fb: FormBuilder,
@@ -30,10 +31,10 @@ export class LandingPageComponent implements OnInit{
       const email = this.loginForm.get('userEmail')!.value;
       
 
-      this.websocketServie.initializeWebSocketConnection({
+    this.websocketServie.initializeWebSocketConnection({
         "name": username,
         "email":email
-    });
+    },this.message);
       this.router.navigate(['/chat']);
     }
    

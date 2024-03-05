@@ -19,18 +19,19 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
     this.userService.getUsers().subscribe((users) => {
       this.users = users;
     });
 
-    for (let i = 1; i <= 2; i++) {
-      this.dummyUsers.push({
-        id: `user${i}`,
-        name: `User ${i}`,
-        email:`email ${i}`,
-        imageURL: `https://placekitten.com/50/50?image=${i}`, // Placeholder image URL
-      });
-    }
+
+    this.userService.activeUsers$.subscribe(user =>{
+      console.log("new user added to user array"+user)
+      this.users.push(user)
+    })
+
+    
   }
 
   userSelected(user:User) {
