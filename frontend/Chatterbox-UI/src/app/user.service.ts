@@ -8,13 +8,15 @@ import { User } from './models/User';
 })
 export class UserService {
 
-  private activeUsersSubject = new BehaviorSubject<User>({} as any);
+  public activeUsersSubject = new BehaviorSubject<{ user: User, action: string }>({ } as any);
+
   public activeUsers$ = this.activeUsersSubject.asObservable();
 
 
   //whenver i new user uis added and the client is informed usin websocket then this method is called
-  addUser(newUser:User){
-    this.activeUsersSubject.next(newUser);
+  addUser(newUser:User,action:string){
+
+    this.activeUsersSubject.next({ user: newUser, action: action });
 
   }
   
@@ -26,6 +28,7 @@ export class UserService {
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl+"users");
+  
   }
 
 
@@ -39,8 +42,13 @@ export class UserService {
   }
 
   getUser(): User {
-    const storedUser = sessionStorage.getItem("user",);
+    const storedUser = sessionStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : null;
+  }
+
+
+  deactivateUser(user:any){
+    return this.http.post<User>(this.apiUrl+"removeUser",user)
   }
 
   onBeforeUnload() {
@@ -49,8 +57,8 @@ export class UserService {
   }
 
   logout() {
-    // Your logout logic here
-    // For example, clear session storage
+   
+    this.deactivateUser(this.getUser);
     sessionStorage.clear();
   }
 }

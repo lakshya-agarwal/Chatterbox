@@ -48,10 +48,14 @@ export class WebsocketService {
           console.log("new message received:"+x.body)
           message.push(x);
         })
+
         this.subscribe("/topic/public",(user)=>{
           console.log("add user message receive:"+user);
-          this.userService.addUser(JSON.parse(user.body))
+          const action = user.headers['action'];
+          this.userService.addUser(JSON.parse(user.body),action)
+          
         })
+
       },
       (error) => {
         console.error('Error adding user:', error);

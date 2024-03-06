@@ -1,8 +1,10 @@
-<mat-card>
-    <mat-card-content>{{user.name}}</mat-card-content>
+<div *ngIf="user">
+  <mat-card>
+    <mat-card-content >{{user!.name}}</mat-card-content>
 </mat-card>
 
 <div class="message-input">
   <input [(ngModel)]="newMessage" placeholder="Type your message..." />
   <button (click)="sendMessage()">Send</button>
+</div>
 </div>

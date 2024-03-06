@@ -10,7 +10,7 @@ import { UserService } from '../user.service';
 })
 export class ChatBoxComponent implements OnChanges {
 
-  @Input() user!: User; 
+  @Input() user: User | undefined; 
   messages: any[] = [];
   newMessage: string = '';
 

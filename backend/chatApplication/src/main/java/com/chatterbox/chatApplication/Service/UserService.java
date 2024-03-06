@@ -56,4 +56,14 @@ public class UserService {
 	    
 	}
 
+
+
+	public UserTO removeUser(UserTO user) {
+		
+		 user.setConnected(false);
+		 UserEntity newUserEntity = mapper.toEntity(user);
+		 UserEntity deactivatedUser = userRepository.save(newUserEntity);
+		return mapper.toDto(deactivatedUser);
+	}
+
 }
